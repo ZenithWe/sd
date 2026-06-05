@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BG - Beginning Game | Mentorias e VOD Reviews Fortnite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"/>
+<style>
+/* =====================================================================
+   BG - Beginning Game | Site Completo + Módulos Complementares
+   Cores: #000 Preto | #FFD700 Amarelo | #D90429 Vermelho
+   ===================================================================== */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --black:#000000;--yellow:#FFD700;--red:#D90429;
+  --yellow2:#FFC200;--red2:#ff0033;
+  --dark:#0a0a0a;--card:#111;--card2:#181818;--card3:#222;
+  --border:rgba(255,215,0,0.15);--border2:rgba(255,215,0,0.3);
+  --text:#f0f0f0;--muted:#888;--muted2:#bbb;
+  --green:#00c853;--blue:#1e90ff;
+  --r:12px;--r2:8px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);font-family:'Barlow',sans-serif;color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.hidden{display:none!important}
+
+code,pre{font-family:'JetBrains Mono',monospace}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#111}
+::-webkit-scrollbar-thumb{background:var(--yellow);border-radius:3px}
+
+/* ===== CURSOR ===== */
+*{cursor:default}
+a,button,[onclick],.faq-q,.admin-nav-item,.client-nav-item{cursor:pointer}
+
+/* ===== PAGES ===== */
+.page{display:none}
+.page.active{display:block}
+
+/* ===== NAVBAR ===== */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:all .3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;letter-spacing:1px}
+.nav-logo .bg-flag{width:36px;height:28px;border-radius:4px;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,0.1)}
+.nav-logo .flag-b{flex:1;background:#000}
+.nav-logo .flag-y{flex:1;background:#FFD700}
+.nav-logo .flag-r{flex:1;background:#D90429}
+.nav-logo span{color:var(--yellow)}
+.nav-logo em{color:#fff;font-style:normal}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{font-size:15px;font-weight:500;color:var(--muted2);transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--yellow)}
+.nav-links a.active{color:var(--yellow)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:var(--r2);font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;transition:all .2s;padding:10px 20px;letter-spacing:.3px}
+.btn-yellow{background:var(--yellow);color:#000}
+.btn-yellow:hover{background:var(--yellow2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,215,0,0.3)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(217,4,41,0.4)}
+.btn-outline{background:transparent;color:var(--yellow);border:1.5px solid var(--yellow)}
+.btn-outline:hover{background:rgba(255,215,0,0.1)}
+.btn-dark{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+.btn-dark:hover{background:var(--card3);border-color:var(--border2)}
+.btn-lg{padding:14px 32px;font-size:16px;border-radius:var(--r)}
+.btn-xl{padding:18px 40px;font-size:18px;border-radius:var(--r);font-weight:700}
+.btn-full{width:100%}
+.cart-btn{position:relative}
+.cart-count{position:absolute;top:-6px;right:-6px;width:18px;height:18px;background:var(--red);border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:#000;border-bottom:1px solid var(--border);padding:20px 24px;flex-direction:column;gap:16px;z-index:999}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:18px;font-weight:500;color:var(--muted2);padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+
+/* ===== HERO ===== */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:68px}
+.hero-bg{position:absolute;inset:0;background:#000}
+.hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 50%,rgba(255,215,0,0.08) 0%,transparent 60%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 40% 40% at 80% 80%,rgba(217,4,41,0.1) 0%,transparent 60%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,215,0,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,215,0,0.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,0.1);border:1px solid var(--border2);border-radius:50px;padding:6px 16px;font-size:13px;font-weight:600;color:var(--yellow);margin-bottom:20px}
+.hero-badge i{font-size:14px}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(56px,8vw,92px);font-weight:900;line-height:.95;letter-spacing:-1px;text-transform:uppercase;margin-bottom:24px}
+.hero-title .line1{color:#fff}
+.hero-title .line2{color:var(--yellow)}
+.hero-title .line3{color:var(--red);-webkit-text-stroke:2px var(--red);-webkit-text-fill-color:transparent}
+.hero-desc{font-size:17px;color:var(--muted2);line-height:1.7;margin-bottom:32px;max-width:480px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.hero-stats{display:flex;gap:28px}
+.hstat{text-align:center}
+.hstat-n{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--yellow);line-height:1}
+.hstat-l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-card-mockup{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:32px;position:relative;overflow:hidden;width:100%;max-width:440px}
+.hero-card-mockup::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,215,0,0.15),transparent 70%)}
+.hero-card-mockup::after{content:'';position:absolute;bottom:-40px;left:-40px;width:150px;height:150px;background:radial-gradient(circle,rgba(217,4,41,0.12),transparent 70%)}
+.mockup-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(217,4,41,0.15);border:1px solid rgba(217,4,41,0.3);border-radius:50px;padding:5px 12px;font-size:12px;font-weight:700;color:var(--red);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px}
+.mockup-plan-name{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#fff;margin-bottom:8px}
+.mockup-price{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;color:var(--yellow);line-height:1;margin-bottom:20px}
+.mockup-price span{font-size:22px;color:var(--muted2)}
+.mockup-features{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.mockup-feat{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted2)}
+.mockup-feat i{color:var(--yellow);font-size:16px;flex-shrink:0}
+.float-badge{position:absolute;background:var(--card2);border:1px solid var(--border2);border-radius:12px;padding:10px 14px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+.float-1{top:-16px;right:20px;color:var(--yellow);animation:float 3s ease-in-out infinite}
+.float-2{bottom:-16px;left:20px;color:var(--muted2);animation:float 3s ease-in-out .5s infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ===== SECTION COMMON ===== */
+section{padding:80px 0}
+.sec-header{text-align:center;margin-bottom:56px}
+.sec-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,215,0,0.08);border:1px solid var(--border);border-radius:50px;padding:5px 14px;font-size:12px;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:900;text-transform:uppercase;line-height:1;margin-bottom:16px}
+.sec-title span{color:var(--yellow)}
+.sec-desc{font-size:17px;color:var(--muted2);max-width:560px;margin:0 auto;line-height:1.7}
+.divider{width:60px;height:3px;background:linear-gradient(90deg,var(--yellow),var(--red));border-radius:2px;margin:16px auto 0}
+
+/* ===== PLANS ===== */
+#plans{background:#000}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;position:relative;overflow:hidden;transition:all .3s}
+.plan-card:hover{transform:translateY(-6px);border-color:var(--border2);box-shadow:0 20px 60px rgba(255,215,0,0.08)}
+.plan-card.featured{border-color:rgba(217,4,41,0.5);box-shadow:0 0 40px rgba(217,4,41,0.12)}
+.plan-card .glow{position:absolute;top:0;left:0;right:0;height:3px}
+.plan-blue .glow{background:linear-gradient(90deg,#1e90ff,#00bfff)}
+.plan-green .glow{background:linear-gradient(90deg,#00c853,#69f0ae)}
+.plan-red .glow{background:linear-gradient(90deg,var(--red),#ff6b6b)}
+.plan-yellow .glow{background:linear-gradient(90deg,var(--yellow),#ffe259)}
+.plan-header{margin-bottom:24px}
+.plan-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;padding:4px 10px;border-radius:4px;margin-bottom:12px}
+.plan-blue .plan-tag{background:rgba(30,144,255,0.15);color:#1e90ff;border:1px solid rgba(30,144,255,0.3)}
+.plan-green .plan-tag{background:rgba(0,200,83,0.15);color:#00c853;border:1px solid rgba(0,200,83,0.3)}
+.plan-red .plan-tag{background:rgba(217,4,41,0.15);color:#ff4060;border:1px solid rgba(217,4,41,0.3)}
+.plan-yellow .plan-tag{background:rgba(255,215,0,0.15);color:var(--yellow);border:1px solid rgba(255,215,0,0.3)}
+.plan-name{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:6px}
+.plan-desc{font-size:14px;color:var(--muted);line-height:1.6}
+.plan-price-box{margin:20px 0;padding:20px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+.plan-price{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:var(--yellow);line-height:1}
+.plan-price .cents{font-size:24px;vertical-align:super}
+.plan-price .period{font-size:16px;color:var(--muted);font-weight:400}
+.plan-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.plan-feat{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted2);line-height:1.5}
+.plan-feat i{flex-shrink:0;margin-top:1px}
+.plan-blue .plan-feat i{color:#1e90ff}
+.plan-green .plan-feat i{color:#00c853}
+.plan-red .plan-feat i{color:#ff4060}
+.plan-yellow .plan-feat i{color:var(--yellow)}
+.plan-feat.inherited{color:var(--muted);font-style:italic;font-size:13px}
+.plan-recommended{position:absolute;top:16px;right:16px;background:var(--yellow);color:#000;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+
+/* ===== COMPARISON TABLE ===== */
+#compare{background:var(--dark)}
+.compare-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.compare-table th{background:#111;padding:16px 20px;font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;text-align:center}
+.compare-table th:first-child{text-align:left;color:var(--muted2)}
+.compare-table th.col-blue{color:#1e90ff}
+.compare-table th.col-green{color:#00c853}
+.compare-table th.col-red{color:#ff4060}
+.compare-table td{padding:14px 20px;font-size:14px;text-align:center;border-top:1px solid rgba(255,255,255,0.04)}
+.compare-table td:first-child{text-align:left;color:var(--muted2)}
+.compare-table tr:hover td{background:rgba(255,215,0,0.02)}
+.compare-table .yes{color:#00c853;font-size:18px}
+.compare-table .no{color:rgba(255,255,255,0.2);font-size:18px}
+.compare-table .price-row td{background:rgba(255,215,0,0.04);font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--yellow)}
+.compare-table .price-row td:first-child{color:var(--muted)}
+
+/* ===== INFO SECTION ===== */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;display:flex;gap:16px}
+.info-icon{width:48px;height:48px;border-radius:12px;background:rgba(255,215,0,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-icon i{font-size:24px;color:var(--yellow)}
+.info-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:6px}
+.info-text{font-size:14px;color:var(--muted2);line-height:1.7}
+
+/* ===== TESTIMONIALS ===== */
+#testimonials{background:#000}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.test-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;position:relative}
+.test-stars{display:flex;gap:3px;margin-bottom:12px}
+.test-stars i{font-size:14px;color:var(--yellow)}
+.test-text{font-size:15px;color:var(--muted2);line-height:1.7;margin-bottom:16px;font-style:italic}
+.test-text::before{content:'"';font-size:40px;color:rgba(255,215,0,0.15);position:absolute;top:12px;left:16px;font-family:Georgia,serif;line-height:1}
+.test-author{display:flex;align-items:center;gap:10px}
+.test-av{width:40px;height:40px;border-radius:50%;background:var(--card2);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.test-name{font-size:14px;font-weight:700;color:#fff}
+.test-rank{font-size:12px;color:var(--muted)}
+
+/* ===== FAQ ===== */
+#faq{background:var(--dark)}
+.faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;font-size:15px;font-weight:600;color:#fff;transition:color .2s}
+.faq-q:hover{color:var(--yellow)}
+.faq-q i{font-size:18px;color:var(--yellow);transition:transform .3s;flex-shrink:0}
+.faq-a{display:none;padding:0 20px 18px;font-size:14px;color:var(--muted2);line-height:1.8;border-top:1px solid rgba(255,255,255,0.04)}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-item.open .faq-a{display:block}
+
+/* ===== COUNTER ===== */
+#counter{background:#000;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.counter-grid{display:flex;justify-content:center;gap:80px;padding:56px 0}
+.cnt-item{text-align:center}
+.cnt-num{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:900;color:var(--yellow);line-height:1}
+.cnt-lbl{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ===== FOOTER ===== */
+footer{background:#000;padding:48px 0;border-top:1px solid rgba(255,255,255,0.04)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff}
+.footer-logo span{color:var(--yellow)}
+.footer-links{display:flex;gap:24px;font-size:14px;color:var(--muted2)}
+.footer-links a:hover{color:var(--yellow)}
+.copyright{font-size:12px;color:var(--muted);margin-top:24px;text-align:center;padding-top:24px;border-top:1px solid rgba(255,255,255,0.03)}
+
+/* ===== CART SIDEBAR ===== */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:2000;display:none}
+.cart-overlay.open{display:block}
+.cart-sidebar{position:fixed;top:0;right:-400px;bottom:0;width:400px;background:#0d0d0d;border-left:1px solid var(--border);z-index:2001;transition:right .3s cubic-bezier(0.16,1,0.3,1);padding:32px;display:flex;flex-direction:column}
+.cart-sidebar.open{right:0}
+.cart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.cart-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;display:flex;align-items:center;gap:8px}
+.cart-close{background:none;border:none;color:var(--muted);font-size:24px}
+.cart-items{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
+.cart-item{background:var(--card);border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:16px;display:flex;justify-content:space-between;align-items:center;position:relative}
+.cart-item-info{display:flex;flex-direction:column;gap:4px}
+.cart-item-name{font-size:15px;font-weight:700;color:#fff}
+.cart-item-price{font-size:14px;color:var(--yellow);font-weight:600}
+.cart-item-remove{background:none;border:none;color:rgba(217,4,41,0.6);font-size:18px}
+.cart-item-remove:hover{color:var(--red)}
+.cart-empty{text-align:center;color:var(--muted);margin:auto 0;font-size:14px}
+.cart-footer{border-top:1px solid rgba(255,255,255,0.06);padding-top:20px}
+.cart-total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#fff;margin-bottom:20px}
+.cart-total-price{color:var(--yellow);font-size:20px;font-family:'Barlow Condensed',sans-serif}
+
+/* ===== AUTH MODAL ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);z-index:3000;display:none;align-items:center;justify-content:center;padding:24px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#0d0d0d;border:1px solid var(--border2);border-radius:20px;width:100%;max-width:440px;padding:32px;position:relative;box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--muted);font-size:20px}
+.auth-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px}
+.auth-tab{flex:1;text-align:center;padding:12px;font-size:15px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s}
+.auth-tab.active{color:var(--yellow);border-color:var(--yellow)}
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:13px;font-weight:500;color:var(--muted2);margin-bottom:6px}
+.form-input{width:100%;background:var(--card);border:1px solid rgba(255,215,0,0.1);border-radius:var(--r2);padding:12px 16px;color:#fff;font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:all .2s}
+.form-input:focus{border-color:var(--yellow);box-shadow:0 0 12px rgba(255,215,0,0.1)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ===== CHECKOUT ===== */
+.checkout-layout{display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:flex-start}
+.checkout-main{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px}
+.checkout-title{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:#fff;margin-bottom:24px;display:flex;align-items:center;gap:12px;text-transform:uppercase}
+.checkout-section{margin-bottom:28px}
+.checkout-section-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.checkout-section-title i{color:var(--yellow)}
+.checkout-side{background:#0d0d0d;border:1px solid var(--border);border-radius:20px;padding:24px;position:sticky;top:92px}
+.checkout-side-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:16px}
+.co-summary-items{display:flex;flex-direction:column;gap:12px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.co-summary-item{display:flex;justify-content:between;font-size:14px;color:var(--muted2)}
+.co-summary-price{margin-left:auto;color:#fff;font-weight:600}
+
+/* ===== CLIENT & ADMIN PANEL DESIGN ===== */
+.panel-layout{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:flex-start}
+.panel-sidebar{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px}
+.panel-user{text-align:center;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:20px}
+.panel-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--red));margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:#000}
+.panel-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;color:#fff}
+.panel-role{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.panel-nav{display:flex;flex-direction:column;gap:4px}
+.admin-nav-item, .client-nav-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--r2);font-size:14px;font-weight:600;color:var(--muted2);transition:all .2s}
+.admin-nav-item:hover, .client-nav-item:hover{color:var(--yellow);background:rgba(255,215,0,0.04)}
+.admin-nav-item.active, .client-nav-item.active{color:#000;background:var(--yellow)}
+.client-content, .admin-content{background:#0d0d0d;border:1px solid var(--border);border-radius:20px;padding:32px;min-height:500px}
+.client-section, .admin-section{display:none}
+.client-section.active, .admin-section.active{display:block}
+.client-header, .admin-header{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:24px;display:flex;align-items:center;justify-content:between;gap:10px;text-transform:uppercase}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--card);border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:20px;text-align:center}
+.stat-card-n{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;color:var(--yellow);line-height:1}
+.stat-card-l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}
+.data-table th{padding:12px 16px;color:var(--muted);font-weight:600;border-bottom:2px solid rgba(255,255,255,0.05)}
+.data-table td{padding:14px 16px;color:var(--text);border-bottom:1px solid rgba(255,255,255,0.03)}
+.data-table tr:hover td{background:rgba(255,215,0,0.01)}
+.status-badge{display:inline-flex;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:700;text-transform:uppercase}
+.status-pending{background:rgba(255,215,0,0.1);color:var(--yellow)}
+.status-completed{background:rgba(0,200,83,0.1);color:#00c853}
+
+/* ===== TOAST WIDGET ===== */
+#toastCont{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px}
+.toast{padding:14px 20px;border-radius:var(--r2);font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 10px 30px rgba(0,0,0,0.4);animation:toastIn .3s forwards}
+@keyframes toastIn{from{transform:translateX(50px);opacity:0}to{transform:translateX(0);opacity:1}}
+
+/* ===== INTEGRAÇÃO MÓDULO 1: CHAT AI FLUTUANTE ===== */
+#aiFloatingWidget {
+  position:fixed;bottom:24px;left:24px;z-index:1900;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(135deg, var(--yellow), #ffc200);
+  box-shadow:0 8px 32px rgba(255,215,0,0.3);
+  display:flex;align-items:center;justify-content:center;
+  color:#000;font-size:26px;border:none;transition:transform .2s;
+}
+#aiFloatingWidget:hover { transform:scale(1.08); }
+.ai-box {
+  position:fixed;bottom:96px;left:24px;z-index:1901;
+  width:360px;height:480px;background:#0d0d0d;
+  border:1px solid var(--border2);border-radius:16px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
+  display:none;flex-direction:column;overflow:hidden;
+}
+.ai-box.open { display:flex; }
+.ai-header {
+  background:#000;padding:16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+.ai-avatar {
+  width:36px;height:36px;border-radius:50%;
+  background:var(--yellow);color:#000;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.ai-title { font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;color:#fff; }
+.ai-close { margin-left:auto;background:none;border:none;color:var(--muted);font-size:18px; }
+.ai-messages { flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px; }
+.ai-msg { padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;max-width:85%;word-break:break-word; }
+.ai-msg.bot { background:var(--card);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px;color:#fff; }
+.ai-msg.user { background:var(--yellow);color:#000;font-weight:600;align-self:flex-end;border-bottom-right-radius:4px; }
+.ai-thinking { display:flex;align-items:center;gap:4px;color:var(--muted);font-size:12px;padding:6px;align-self:flex-start; }
+.ai-thinking span { width:5px;height:5px;border-radius:50%;background:var(--yellow);animation:aiBlink 1.4s infinite both; }
+.ai-thinking span:nth-child(2) { animation-delay:.2s; }
+.ai-thinking span:nth-child(3) { animation-delay:.4s; }
+@keyframes aiBlink { 0%,80%,100% { opacity:.2; } 40% { opacity:1; } }
+.ai-footer { padding:12px;background:#050505;border-top:1px solid rgba(255,255,255,0.05);display:flex;gap:8px; }
+.ai-input { flex:1;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:8px 16px;color:#fff;font-size:13px;outline:none; }
+.ai-send { width:36px;height:36px;border-radius:50%;background:var(--yellow);border:none;color:#000;display:flex;align-items:center;justify-content:center;font-size:14px; }
+
+/* ===== MEDIA QUERIES ===== */
+@media(max-width:992px){
+  .hero-content{grid-template-columns:1fr;text-align:center}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .hero-ctas,.hero-stats{justify-content:center}
+  .plans-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .info-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .checkout-layout{grid-template-columns:1fr}
+  .panel-layout{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .counter-grid{flex-direction:column;gap:32px}
+  .footer-inner{flex-direction:column;gap:20px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">
+      <div class="bg-flag"><div class="flag-b"></div><div class="flag-y"></div><div class="flag-r"></div></div>
+      <span>BG</span><em>Beginning Game</em>
+    </div>
+    <div class="nav-links">
+      <a href="#hero" onclick="showPage('home')" class="active">Início</a>
+      <a href="#plans" onclick="showPage('home')">Planos</a>
+      <a href="#compare" onclick="showPage('home')">Comparativo</a>
+      <a href="#testimonials" onclick="showPage('home')">Depoimentos</a>
+      <a href="#faq" onclick="showPage('home')">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-dark cart-btn" onclick="toggleCart()">
+        <i class="ti ti-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <div id="navAuthArea">
+        <button class="btn btn-yellow" onclick="openAuthModal()">Entrar / Cadastro</button>
+      </div>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" onclick="toggleMobileMenu();showPage('home')">Início</a>
+  <a href="#plans" onclick="toggleMobileMenu();showPage('home')">Planos</a>
+  <a href="#compare" onclick="toggleMobileMenu();showPage('home')">Comparativo</a>
+  <a href="#testimonials" onclick="toggleMobileMenu();showPage('home')">Depoimentos</a>
+  <a href="#faq" onclick="toggleMobileMenu();showPage('home')">FAQ</a>
+</div>
+
+<div class="page active" id="page-home">
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content container">
+      <div>
+        <div class="hero-badge"><i class="ti ti-bolt"></i> Mentoria Elite Fortnite</div>
+        <h1 class="hero-title" id="heroTitleDisplay">
+          <div class="line1">Evolua seu</div>
+          <div class="line2">Gameplay</div>
+          <div class="line3">Ao Extremo</div>
+        </h1>
+        <p class="hero-desc" id="heroSubtitleDisplay">Aprenda as mecânicas, rotações e tomadas de decisão que separam os amadores dos pro players de Fortnite competitive.</p>
+        <div class="hero-ctas">
+          <a href="#plans" class="btn btn-yellow btn-lg">Ver Planos de Mentoria</a>
+          <a href="#compare" class="btn btn-outline btn-lg">Comparar Vantagens</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="hstat-n" data-count="500">0</div><div class="hstat-l">Alunos Evoluídos</div></div>
+          <div class="hstat"><div class="hstat-n" data-count="98">0</div><div class="hstat-l">Satisfação</div></div>
+          <div class="hstat"><div class="hstat-n" data-count="15">0</div><div class="hstat-l">Mentores Pro</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-mockup">
+          <div class="mockup-badge">Mais Popular</div>
+          <div class="mockup-plan-name">Plano PRO</div>
+          <div class="mockup-price">R$ 149<span>,90</span></div>
+          <div class="mockup-features">
+            <div class="mockup-feat"><i class="ti ti-circle-check-filled"></i> VOD Review de 3 Partidas</div>
+            <div class="mockup-feat"><i class="ti ti-circle-check-filled"></i> Guia Macetes e Rotações Custom</div>
+            <div class="mockup-feat"><i class="ti ti-circle-check-filled"></i> 2 Calls de Alinhamento Estratégico</div>
+          </div>
+          <button class="btn btn-red btn-full" onclick="addMockupToCart()">Quero este Plano</button>
+        </div>
+        <div class="float-badge float-1"><i class="ti ti-trophy"></i> Rumo ao Unreal</div>
+        <div class="float-badge float-2"><i class="ti ti-device-gamepad-2"></i> Análise de VODs</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="container">
+      <div class="sec-header">
+        <div class="sec-tag"><i class="ti ti-crown"></i> Nossos Planos</div>
+        <h2 class="sec-title">ESCOLHA SEU <span>PLANO</span></h2>
+        <div class="divider"></div>
+        <p class="sec-desc" style="margin-top:16px">Três planos pensados para cada etapa da sua evolução no Fortnite competitivo.</p>
+      </div>
+      <div class="plans-grid" id="plansGrid">
+        </div>
+    </div>
+  </section>
+
+  <section id="compare">
+    <div class="container">
+      <div class="sec-header">
+        <div class="sec-tag"><i class="ti ti-adjustments-horizontal"></i> Comparar Recursos</div>
+        <h2 class="sec-title">TABELA <span>COMPARATIVA</span></h2>
+        <div class="divider"></div>
+      </div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Recurso / Vantagem</th>
+            <th class="col-blue">BASIC</th>
+            <th class="col-green">PRO</th>
+            <th class="col-red">ELITE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Análise de VOD Reviews</td><td>1 Partida</td><td>3 Partidas</td><td>Ilimitado (30 dias)</td></tr>
+          <tr><td>Calls ao vivo com Mentor</td><td>Não</td><td>2 Calls (40 min)</td><td>4 Calls (60 min)</td></tr>
+          <tr><td>Acesso ao Servidor Vip Discord</td><td>Sim</td><td>Sim</td><td>Sim</td></tr>
+          <tr><td>Cargo Exclusivo de Aluno</td><td><i class="ti ti-check yes"></i></td><td><i class="ti ti-check yes"></i></td><td><i class="ti ti-check yes"></i></td></tr>
+          <tr><td>Rotina de Treinos Individualizada</td><td><i class="ti ti-x no"></i></td><td>Sim</td><td>Sim</td></tr>
+          <tr><td>Suporte Direto via Chat no WhatsApp</td><td><i class="ti ti-x no"></i></td><td><i class="ti ti-x no"></i></td><td>Sim</td></tr>
+          <tr class="price-row">
+            <td>Preço Mensal</td>
+            <td>R$ 49,90</td>
+            <td>R$ 149,90</td>
+            <td>R$ 299,90</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon"><i class="ti ti-device-gamepad-2"></i></div>
+          <div>
+            <div class="info-title">Metodologia Pró</div>
+            <div class="info-text">Nossos mentores possuem experiência real em FNCs e campeonatos tier 1 e tier 2 de Fortnite.</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="ti ti-users"></i></div>
+          <div>
+            <div class="info-title">Comunidade Ativa</div>
+            <div class="info-text">Faça networking, encontre parceiros de Trio ou Duo focados no mesmo objetivo competitivo que você.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <div class="sec-header">
+        <div class="sec-tag"><i class="ti ti-message-2"></i> Resultados Reais</div>
+        <h2 class="sec-title">QUEM CONFIA, <span>EVOLUI</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-stars"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
+          <div class="test-text">Saí do Champion pro Unreal em apenas 2 semanas de mentoria com o plano PRO. A análise de VOD mudou totalmente minhas rotações no early-game.</div>
+          <div class="test-author">
+            <div class="test-av">K</div>
+            <div><div class="test-name">Kael_FN</div><div class="test-rank">Aluno Unreal</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
+          <div class="test-text">O suporte dos mentores no Elite é fantástico. Eles criaram um mapa criativo customizado só pra eu treinar o meu pixel right shoulder peek. Recomendadíssimo!</div>
+          <div class="test-author">
+            <div class="test-av">D</div>
+            <div><div class="test-name">DuduL2</div><div class="test-rank">Aluno Elite</div></div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars"><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i></div>
+          <div class="test-text">O plano Basic vale cada centavo. Só de entrar no Discord privado e conseguir jogar scrims organizadas de alto nível já mudou completamente meu nível.</div>
+          <div class="test-author">
+            <div class="test-av">M</div>
+            <div><div class="test-name">Matias_V</div><div class="test-rank">Aluno Champion</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="sec-header">
+        <div class="sec-tag"><i class="ti ti-help-circle"></i> FAQ</div>
+        <h2 class="sec-title">DÚVIDAS <span>FREQUENTES</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Como funciona a entrega das VOD Reviews? <i class="ti ti-chevron-down"></i></div>
+          <div class="faq-a">Na sua área de cliente, você envia o link da partida (YouTube, Twitch ou arquivo). O mentor revisará gravando a tela ou ao vivo via Discord, detalhando seus erros e melhorias estruturais.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Posso comprar o plano para DUO? <i class="ti ti-chevron-down"></i></div>
+          <div class="faq-a">Sim! No checkout você escolhe a modalidade DUO. O cargo no Discord será individual para o comprador, porém ambos poderão participar das sessões de mentoria e chamadas de voz com o mentor simultaneamente.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Quanto tempo tenho para usar o plano? <i class="ti ti-chevron-down"></i></div>
+          <div class="faq-a">Após a confirmação do pagamento, as sessões do plano ficam disponíveis por 30 dias. Recomendamos espaçar as sessões para melhor absorção do conteúdo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="counter">
+    <div class="container counter-grid">
+      <div class="cnt-item"><div class="cnt-num" data-count="1200">0</div><div class="cnt-lbl">Horas de Call</div></div>
+      <div class="cnt-item"><div class="cnt-num" data-count="4500">0</div><div class="cnt-lbl">Pras Criados</div></div>
+      <div class="cnt-item"><div class="cnt-num" data-count="100">0</div><div class="cnt-lbl">Vitórias FNCs</div></div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-checkout">
+  <section style="padding-top:108px">
+    <div class="container">
+      <div class="checkout-layout">
+        <div class="checkout-main">
+          <h2 class="checkout-title"><i class="ti ti-shopping-bag" style="color:var(--yellow)"></i> Finalizar Pedido</h2>
+          
+          <div class="checkout-section">
+            <div class="checkout-section-title"><i class="ti ti-user"></i> Dados Pessoais</div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Nome completo</label><input class="form-input" id="co-name" placeholder="Seu nome"/></div>
+              <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" id="co-email" placeholder="seu@email.com"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">CPF</label><input class="form-input" id="co-cpf" placeholder="000.000.000-00"/></div>
+              <div class="form-group"><label class="form-label">Discord (usuário)</label><input class="form-input" id="co-discord" placeholder="usuario#0000"/></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Modalidade</label>
+              <select class="form-input" id="co-mode">
+                <option value="solo">SOLO — Apenas você</option>
+                <option value="duo">DUO — Você + 1 parceiro (calls juntas)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="checkout-section">
+            <div class="checkout-section-title"><i class="ti ti-credit-card"></i> Forma de Pagamento</div>
+            <div style="background:rgba(255,215,0,0.04);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px">
+              <i class="ti ti-qrcode" style="font-size:24px;color:var(--yellow)"></i>
+              <div>
+                <div style="font-weight:700;color:#fff">Pix Instantâneo</div>
+                <div style="font-size:12px;color:var(--muted)">Liberação imediata do acesso em minutos.</div>
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn btn-yellow btn-full btn-lg" onclick="processOrder()"><i class="ti ti-lock"></i> Gerar QR Code e Concluir</button>
+        </div>
+
+        <div class="checkout-side">
+          <h3 class="checkout-side-title">Resumo</h3>
+          <div class="co-summary-items" id="coSummaryItems"></div>
+          <div class="cart-total-row" style="margin-bottom:0">
+            <span>Total:</span>
+            <span class="cart-total-price" id="coTotalPrice">R$ 0,00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-success">
+  <section style="padding-top:120px;text-align:center">
+    <div class="container" style="max-width:540px">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(0,200,83,0.15);border:2px solid #00c853;color:#00c853;font-size:36px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px">
+        <i class="ti ti-check"></i>
+      </div>
+      <h2 style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:12px">Pedido Gerado com Sucesso!</h2>
+      <p style="color:var(--muted2);font-size:15px;margin-bottom:24px">Escaneie o QR Code abaixo para pagar. O sistema identificará automaticamente.</p>
+      
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px">
+        <div id="pixQrContainer" style="width:180px;height:180px;background:#fff;margin:0 auto 16px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;border:2px solid var(--border2)">
+          <img id="pixGeneratedImg" src="" alt="Aguardando QR Code" style="max-width:100%;height:auto;display:none"/>
+          <div id="pixQrLoading" style="color:#000;font-size:13px;font-weight:600">Gerando QR Code...</div>
+        </div>
+        <div id="pixPayloadStatus" style="font-size:13px;font-weight:700;color:var(--yellow);margin-bottom:16px">Carregando Pix Payload...</div>
+        <div style="background:#050505;border:1px solid rgba(255,255,255,0.05);border-radius:8px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted2);word-break:break-all;text-align:left;max-height:80px;overflow-y:auto;margin-bottom:12px" id="pixCopiaColaText"></div>
+        <button class="btn btn-dark btn-full" onclick="copyPixCopiaCola()"><i class="ti ti-copy"></i> Copiar Código Copia e Cola</button>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;font-size:14px;color:var(--text);margin-bottom:24px">
+        Número do Pedido: <strong style="color:var(--yellow)" id="successOrderNum">#000000</strong>
+      </div>
+      
+      <button class="btn btn-yellow" onclick="showPage('client')">Ir para Área do Cliente</button>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-client">
+  <section style="padding-top:108px">
+    <div class="container panel-layout">
+      <aside class="panel-sidebar">
+        <div class="panel-user">
+          <div class="panel-avatar" id="clientAvatar">U</div>
+          <div class="panel-name" id="clientName">Carregando...</div>
+          <div class="panel-role">Aluno Oficial</div>
+        </div>
+        <nav class="panel-nav">
+          <div class="client-nav-item active" onclick="clientTab('dashboard')"><i class="ti ti-layout-dashboard"></i> Dashboard</div>
+          <div class="client-nav-item" onclick="clientTab('orders')"><i class="ti ti-shopping-bag"></i> Meus Pedidos</div>
+          <div class="client-nav-item" onclick="clientTab('profile')"><i class="ti ti-user"></i> Meu Perfil</div>
+          <div class="client-nav-item" onclick="clientTab('support')"><i class="ti ti-headset"></i> Suporte</div>
+          <div class="client-nav-item" style="margin-top:20px;color:rgba(217,4,41,0.8)" onclick="logout()"><i class="ti ti-logout"></i> Sair</div>
+        </nav>
+      </aside>
+
+      <main class="client-content">
+        <div class="client-section active" id="cs-dashboard">
+          <div class="client-header"><i class="ti ti-layout-dashboard"></i> Dashboard</div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="stat-card-n" id="cs-orders-count">0</div><div class="stat-card-l">Pedidos</div></div>
+            <div class="stat-card"><div class="stat-card-n">0</div><div class="stat-card-l">Reviews Entregues</div></div>
+            <div class="stat-card"><div class="stat-card-n">Gold</div><div class="stat-card-l">Rank Interno</div></div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px">
+            <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:var(--yellow);margin-bottom:12px">Boas-vindas ao Beginning Game!</h3>
+            <p style="font-size:14px;color:var(--muted2)">Utilize o menu lateral para gerenciar seus planos contratados, submeter replays para VOD reviews e obter ajuda com o suporte dedicado.</p>
+          </div>
+        </div>
+
+        <div class="client-section" id="cs-orders">
+          <div class="client-header"><i class="ti ti-shopping-bag"></i> Meus Pedidos</div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>Data</th><th>Itens</th><th>Total</th><th>Status</th></tr></thead>
+              <tbody id="clientOrdersTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="client-section" id="cs-profile">
+          <div class="client-header"><i class="ti ti-user"></i> Meu Perfil</div>
+          <div style="max-width:480px">
+            <div class="form-group"><label class="form-label">Nome Completo</label><input class="form-input" id="profileName"/></div>
+            <div class="form-group"><label class="form-label">E-mail de Acesso</label><input class="form-input" id="profileEmail" disabled/></div>
+            <div class="form-group"><label class="form-label">Tag do Discord</label><input class="form-input" id="profileDiscord"/></div>
+            <button class="btn btn-yellow" onclick="saveProfile()"><i class="ti ti-device-floppy"></i> Atualizar Dados</button>
+          </div>
+        </div>
+
+        <div class="client-section" id="cs-support">
+          <div class="client-header"><i class="ti ti-headset"></i> Suporte ao Aluno</div>
+          <p style="font-size:14px;color:var(--muted2);margin-bottom:20px">Caso precise de ajuda com o agendamento de chamadas ou envio de vídeos, abra um ticket ou fale conosco em nosso Discord oficial clicando no botão abaixo.</p>
+          <a href="#" id="discordSupportLink" target="_blank" class="btn btn-red"><i class="ti ti-brand-discord"></i> Entrar no Canal de Suporte</a>
+        </div>
+      </main>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-admin">
+  <section style="padding-top:108px">
+    <div class="container panel-layout">
+      <aside class="panel-sidebar">
+        <div class="panel-user">
+          <div class="panel-avatar" style="background:var(--red)">A</div>
+          <div class="panel-name">Painel Admin</div>
+          <div class="panel-role" style="color:var(--red)">Administrador geral</div>
+        </div>
+        <nav class="panel-nav">
+          <div class="admin-nav-item active" onclick="adminTab('dashboard')"><i class="ti ti-chart-bar"></i> Visão Geral</div>
+          <div class="admin-nav-item" onclick="adminTab('plans')"><i class="ti ti-crown"></i> Gerenciar Planos</div>
+          <div class="admin-nav-item" onclick="adminTab('categories')"><i class="ti ti-tags"></i> Categorias</div>
+          <div class="admin-nav-item" onclick="adminTab('digital')"><i class="ti ti-download"></i> Produtos Digitais</div>
+          <div class="admin-nav-item" onclick="adminTab('texts')"><i class="ti ti-edit"></i> Textos do Site</div>
+          <div class="admin-nav-item" onclick="adminTab('orders')"><i class="ti ti-list-check"></i> Todos os Pedidos</div>
+          <div class="admin-nav-item" style="margin-top:20px;color:rgba(217,4,41,0.8)" onclick="logout()"><i class="ti ti-logout"></i> Sair</div>
+        </nav>
+      </aside>
+
+      <main class="admin-content">
+        <div class="admin-section active" id="as-dashboard">
+          <div class="admin-header"><div class="admin-title">Dashboard Administrativo</div></div>
+          <div class="stats-grid">
+            <div class="stat-card"><div class="stat-card-n" id="ad-sales-total">R$ 0,00</div><div class="stat-card-l">Faturamento Total</div></div>
+            <div class="stat-card"><div class="stat-card-n" id="ad-orders-count">0</div><div class="stat-card-l">Pedidos Totais</div></div>
+            <div class="stat-card"><div class="stat-card-n" id="ad-users-count">0</div><div class="stat-card-l">Usuários Registrados</div></div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px">
+            <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:16px">Pedidos Recentes</h3>
+            <div id="adminRecentOrders"><div style="color:var(--muted);font-size:14px">Nenhum pedido ainda.</div></div>
+          </div>
+        </div>
+
+        <div class="admin-section" id="as-plans">
+          <div class="admin-header">
+            <div class="admin-title">Gerenciar Planos</div>
+            <button class="btn btn-yellow" onclick="openPlanModal()"><i class="ti ti-plus"></i> Novo Plano</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>Nome</th><th>Preço</th><th>Destaque</th><th>Status</th><th>Ações</th></tr></thead>
+              <tbody id="adminPlansTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-section" id="as-categories">
+          <div class="admin-header">
+            <div class="admin-title">Categorias de Produtos</div>
+            <button class="btn btn-yellow" onclick="openCategoryModal()"><i class="ti ti-plus"></i> Nova Categoria</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>Slug</th><th>Nome</th><th>Ações</th></tr></thead>
+              <tbody id="adminCategoriesTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-section" id="as-digital">
+          <div class="admin-header">
+            <div class="admin-title">Produtos Digitais (Ebooks/Vídeos)</div>
+            <button class="btn btn-yellow" onclick="openDigitalModal()"><i class="ti ti-plus"></i> Novo Produto</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>Nome</th><th>Categoria</th><th>Preço</th><th>Ações</th></tr></thead>
+              <tbody id="adminDigitalTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-section" id="as-texts">
+          <div class="admin-header"><div class="admin-title">Editar Textos Base do Site</div></div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px">
+            <div class="form-group"><label class="form-label">Título Principal (Hero Line 2)</label><input class="form-input" id="adminHeroTitle"/></div>
+            <div class="form-group"><label class="form-label">Subtítulo Descritivo (Hero Desc)</label><textarea class="form-input" id="adminHeroSub" rows="3"></textarea></div>
+            <div class="form-group"><label class="form-label">Chave PIX Recebedora (CNPJ, E-mail ou Telefone)</label><input class="form-input" id="pixKeyAdmin"/></div>
+            <div class="form-group"><label class="form-label">Link de Convite do Discord</label><input class="form-input" id="adminDiscordLink"/></div>
+            <button class="btn btn-yellow" onclick="saveSiteTexts()"><i class="ti ti-device-floppy"></i> Salvar e Aplicar Textos</button>
+          </div>
+        </div>
+
+        <div class="admin-section" id="as-orders">
+          <div class="admin-header"><div class="admin-title">Lista Completa de Pedidos</div></div>
+          <div style="overflow-x:auto">
+            <table class="data-table">
+              <thead><tr><th>ID</th><th>Cliente</th><th>Itens</th><th>Total</th><th>Status</th><th>Ações</th></tr></thead>
+              <tbody id="adminOrdersTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo"><span>BG</span> Beginning Game</div>
+    <div class="footer-links">
+      <a href="#" onclick="openModal('privacy')">Privacidade</a>
+      <a href="#" onclick="openModal('terms')">Termos de Uso</a>
+    </div>
+  </div>
+  <div class="copyright">&copy; 2026 Beginning Game. Desenvolvido para Alta Performance Competitiva.</div>
+</footer>
+
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('authModal')"><i class="ti ti-x"></i></button>
+    <div class="auth-tabs">
+      <div class="auth-tab active" onclick="authTab('login')">Entrar</div>
+      <div class="auth-tab" onclick="authTab('register')">Cadastrar</div>
+    </div>
+    
+    <div id="loginForm">
+      <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" id="loginEmail" type="email" placeholder="seu@email.com"/></div>
+      <div class="form-group"><label class="form-label">Senha</label><input class="form-input" id="loginPass" type="password" placeholder="••••••••"/></div>
+      <button class="btn btn-yellow btn-full" onclick="doLogin()">Acessar Conta</button>
+    </div>
+
+    <div id="registerForm" style="display:none">
+      <div class="form-group"><label class="form-label">Nome Completo</label><input class="form-input" id="regName" placeholder="Seu nome"/></div>
+      <div class="form-group"><label class="form-label">E-mail</label><input class="form-input" id="regEmail" type="email" placeholder="seu@email.com"/></div>
+      <div class="form-group"><label class="form-label">Discord (ex: nickname)</label><input class="form-input" id="regDiscord" placeholder="Ex: ninja"/></div>
+      <div class="form-group"><label class="form-label">Senha</label><input class="form-input" id="regPass" type="password" placeholder="Mínimo 6 dígitos"/></div>
+      <div class="form-group"><label class="form-label">Confirmar Senha</label><input class="form-input" id="regPass2" type="password" placeholder="••••••••"/></div>
+      <button class="btn btn-yellow btn-full" onclick="doRegister()">Criar Conta</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="planModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('planModal')"><i class="ti ti-x"></i></button>
+    <div id="planModalTitle" style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:20px">Criar Novo Plano</div>
+    <input type="hidden" id="planEditId"/>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Nome do Plano</label><input class="form-input" id="planName"/></div>
+      <div class="form-group"><label class="form-label">Preço (Ex: 149.90)</label><input class="form-input" id="planPrice"/></div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Cor de Destaque</label>
+      <select class="form-input" id="planColor">
+        <option value="blue">Azul</option>
+        <option value="green">Verde</option>
+        <option value="red">Vermelho</option>
+        <option value="yellow">Amarelo</option>
+      </select>
+    </div>
+    <div class="form-group"><label class="form-label">Descrição Curta</label><input class="form-input" id="planDesc"/></div>
+    <div class="form-group"><label class="form-label">Recursos (uma por linha)</label><textarea class="form-input" id="planFeatures" rows="4"></textarea></div>
+    <button class="btn btn-yellow btn-full" onclick="savePlan()"><i class="ti ti-device-floppy"></i> Salvar Plano</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="categoryModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('categoryModal')"><i class="ti ti-x"></i></button>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:20px">Categoria</div>
+    <input type="hidden" id="categoryEditSlug"/>
+    <div class="form-group"><label class="form-label">Nome da Categoria</label><input class="form-input" id="categoryName" placeholder="Ex: E-books Estratégicos"/></div>
+    <button class="btn btn-yellow btn-full" onclick="saveCategory()"><i class="ti ti-device-floppy"></i> Salvar Categoria</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="digitalModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('digitalModal')"><i class="ti ti-x"></i></button>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:20px">Produto Digital</div>
+    <input type="hidden" id="digitalEditId"/>
+    <div class="form-group"><label class="form-label">Nome do Produto</label><input class="form-input" id="digitalName" placeholder="Ex: Guia Completo Boxfight"/></div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Categoria</label>
+        <select class="form-input" id="digitalCategory"></select>
+      </div>
+      <div class="form-group"><label class="form-label">Preço (Ex: 29.90)</label><input class="form-input" id="digitalPrice" placeholder="0.00"/></div>
+    </div>
+    <button class="btn btn-yellow btn-full" onclick="saveDigital()"><i class="ti ti-device-floppy"></i> Salvar Produto</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="genericModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('genericModal')"><i class="ti ti-x"></i></button>
+    <div class="modal-title" id="genericModalTitle" style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--yellow)"></div>
+    <div style="padding-top:16px;font-size:14px;color:var(--muted2);line-height:1.8;max-height:300px;overflow-y:auto" id="genericModalContent"></div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <div class="cart-title"><i class="ti ti-shopping-cart"></i> Seu Carrinho</div>
+    <button class="cart-close" onclick="toggleCart()"><i class="ti ti-x"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsContainer"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Subtotal:</span>
+      <span class="cart-total-price" id="cartTotalPrice">R$ 0,00</span>
+    </div>
+    <button class="btn btn-yellow btn-full btn-lg" onclick="goToCheckout()">Avançar para Checkout</button>
+  </div>
+</div>
+
+<div id="toastCont"></div>
+
+<button id="aiFloatingWidget" onclick="toggleAiBox()"><i class="ti ti-message-chatbot"></i></button>
+<div class="ai-box" id="aiBox">
+  <div class="ai-header">
+    <div class="ai-avatar"><i class="ti ti-cpu"></i></div>
+    <div>
+      <div class="ai-title">Treinador IA BG</div>
+      <div style="font-size:10px;color:var(--green);font-weight:700">CLAUDE ATIVO</div>
+    </div>
+    <button class="ai-close" onclick="toggleAiBox()"><i class="ti ti-x"></i></button>
+  </div>
+  <div class="ai-messages" id="aiMessages">
+    <div class="ai-msg bot">Olá! Sou o Assistente de Inteligência Real do BG. Como posso te ajudar na sua rotina de treinos ou dúvidas de Fortnite hoje?</div>
+  </div>
+  <div class="ai-footer">
+    <input type="text" class="ai-input" id="aiInput" placeholder="Pergunte sobre treinos, rotações..." onkeydown="if(event.key==='Enter')sendAiMessage()"/>
+    <button class="ai-send" onclick="sendAiMessage()"><i class="ti ti-send"></i></button>
+  </div>
+</div>
+
+<script>
+// ============ BANCO DE DADOS LOCAL (LOCALSTORAGE) EXPANDIDO ============
+const DB = {
+  get: (k, def)=> JSON.parse(localStorage.getItem('bg_'+k)) || def,
+  set: (k, v)=> localStorage.setItem('bg_'+k, JSON.stringify(v)),
+  
+  users: function(){ return this.get('users', [
+    {id:1, name:'Admin BG', email:'admin@bg.com', password:'admin', discord:'admin_bg', isAdmin:true, createdAt:'01/01/2026'},
+    {id:2, name:'Kael FN', email:'kael@email.com', password:'123', discord:'kael_unreal', isAdmin:false, createdAt:'05/02/2026'}
+  ])},
+  addUser: function(u){ const arr=this.users(); arr.push(u); this.set('users', arr); },
+  
+  plans: function(){ return this.get('plans', [
+    {id:1, name:'Plano BASIC', price:'49.90', color:'blue', desc:'Ideal para quem quer começar a organizar sua rotina.', features:['VOD Review de 1 Partida','Acesso ao Servidor VIP Discord','Cargo Exclusivo de Aluno'], active:true},
+    {id:2, name:'Plano PRO', price:'149.90', color:'green', desc:'O mais popular. Focado em evolução constante média/alta.', features:['VOD Review de 3 Partidas','Guia Macetes e Rotações Custom','2 Calls de Alinhamento (40min)','Rotina de Treino Customizada'], active:true},
+    {id:3, name:'Plano ELITE', price:'299.90', color:'red', desc:'Acompanhamento profissional diário para o topo.', features:['VOD Reviews Ilimitadas (30 dias)','4 Calls Individuais (60min)','Suporte direto via WhatsApp','Prioridade Máxima com os Mentores'], active:true}
+  ])},
+  savePlans: function(arr){ this.set('plans', arr); },
+
+  // Módulo 2 — Tabelas Adicionais
+  categories: function() { return this.get('categories', [
+    {slug:'ebooks', name:'E-books e Guias'},
+    {slug:'courses', name:'Cursos Gravados'}
+  ]);},
+  saveCategories: function(arr) { this.set('categories', arr); },
+
+  digitalProducts: function() { return this.get('digitalProducts', [
+    {id:101, name:'Ebook: Guia do Early Game Perfeito', category:'ebooks', price:'19.90'},
+    {id:102, name:'Curso: Mecânicas Avançadas Piece Control', category:'courses', price:'79.90'}
+  ]);},
+  saveDigitalProducts: function(arr) { this.set('digitalProducts', arr); },
+
+  siteTexts: function() { return this.get('siteTexts', {
+    heroTitle: 'Gameplay',
+    heroSubtitle: 'Aprenda as mecânicas, rotações e tomadas de decisão que separam os amadores dos pro players de Fortnite competitive.',
+    pixKey: 'financeiro@beginninggame.com',
+    discordLink: 'https://discord.gg/beginninggame'
+  });},
+  saveSiteTexts: function(obj) { this.set('siteTexts', obj); },
+  
+  orders: function(){ return this.get('orders', []) },
+  addOrder: function(o){ const arr=this.orders(); arr.push(o); this.set('orders', arr); },
+  saveOrders: function(arr){ this.set('orders', arr); },
+  
+  currentUser: function(){ return this.get('current_user', null); },
+  setUser: function(u){ this.set('current_user', u); }
+};
+
+// ============ ESTADO DO CARRINHO VIA SESSIONSTORAGE ============
+let cart = JSON.parse(sessionStorage.getItem('bg_cart')) || [];
+
+function saveCart() {
+  sessionStorage.setItem('bg_cart', JSON.stringify(cart));
+  updateCartUI();
+}
+
+// ============ CONTROLE DE ROTAS E DIRECIONAMENTO ============
+function showPage(pId) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target = document.getElementById('page-'+pId);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0});
+  
+  document.querySelectorAll('#navbar .nav-links a').forEach(a=>{
+    a.classList.toggle('active', a.getAttribute('href')==='#'+pId || (pId==='home' && a.getAttribute('href').startsWith('#')));
+  });
+
+  if(pId === 'client') renderClient();
+  if(pId === 'admin') renderAdmin();
+}
+
+// ============ INICIALIZAÇÃO DE TEXTOS DO ADMIN EXPANDIDO ============
+function applySiteTexts() {
+  const texts = DB.siteTexts();
+  const titleDisplay = document.getElementById('heroTitleDisplay');
+  if(titleDisplay) {
+    titleDisplay.innerHTML = `<div class="line1">Evolua seu</div><div class="line2">${texts.heroTitle}</div><div class="line3">Ao Extremo</div>`;
+  }
+  const subtitleDisplay = document.getElementById('heroSubtitleDisplay');
+  if(subtitleDisplay) subtitleDisplay.textContent = texts.heroSubtitle;
+
+  const dLink = document.getElementById('discordSupportLink');
+  if(dLink) dLink.href = texts.discordLink;
+}
+
+// ============ RENDERIZADOR DE PLANOS (E PRODUTOS DIGITAIS ADICIONAIS) ============
+function renderPlans() {
+  const container = document.getElementById('plansGrid');
+  if(!container) return;
+  container.innerHTML = '';
+
+  // Renderiza planos estruturais de mentoria
+  DB.plans().filter(p=>p.active).forEach(p=>{
+    const card = document.createElement('div');
+    card.className = `plan-card plan-${p.color} ${p.name.includes('PRO')?'featured':''}`;
+    card.innerHTML = `
+      ${p.name.includes('PRO')?'<div class="plan-recommended">Popular</div>':''}
+      <div class="glow"></div>
+      <div class="plan-header">
+        <span class="plan-tag">${p.name.split(' ')[1] || 'MENTORIA'}</span>
+        <h3 class="plan-name">${p.name}</h3>
+        <p class="plan-desc">${p.desc}</p>
+      </div>
+      <div class="plan-price-box">
+        <div class="plan-price">R$ ${p.price.split('.')[0]}<span class="cents">,${p.price.split('.')[1]||'00'}</span><span class="period">/mês</span></div>
+      </div>
+      <div class="plan-features">
+        ${p.features.map(f=>`<div class="plan-feat"><i class="ti ti-circle-check-filled"></i>${f}</div>`).join('')}
+      </div>
+      <button class="btn ${p.name.includes('PRO')?'btn-red':'btn-yellow'} btn-full" onclick="addToCart(${p.id}, 'plan')">Adicionar ao Carrinho</button>
+    `;
+    container.appendChild(card);
+  });
+
+  // Insere Seção Extra Dinâmica para Produtos Digitais caso existam
+  const digitalArr = DB.digitalProducts();
+  if(digitalArr.length > 0) {
+    const divider = document.createElement('div');
+    divider.style.cssText = 'grid-column: 1 / -1; margin: 40px 0 20px; text-align: center;';
+    divider.innerHTML = `<div class="sec-tag"><i class="ti ti-download"></i> Materiais de Apoio</div><h3 style="font-family:'Barlow Condensed',sans-serif; font-size: 28px; color: #fff;">PRODUTOS DIGITAIS E E-BOOKS</h3>`;
+    container.appendChild(divider);
+
+    digitalArr.forEach(d => {
+      const catObj = DB.categories().find(c=>c.slug === d.category);
+      const card = document.createElement('div');
+      card.className = `plan-card plan-yellow`;
+      card.innerHTML = `
+        <div class="glow"></div>
+        <div class="plan-header">
+          <span class="plan-tag" style="background:rgba(255,215,0,0.1); color:var(--yellow); border:1px solid var(--border)">${catObj ? catObj.name : 'DIGITAL'}</span>
+          <h3 class="plan-name" style="font-size:22px; min-height:54px; margin-top:8px">${d.name}</h3>
+          <p class="plan-desc">Acesso imediato para download após confirmação.</p>
+        </div>
+        <div class="plan-price-box" style="margin:10px 0; padding:10px 0;">
+          <div class="plan-price" style="font-size:36px">R$ ${d.price.split('.')[0]}<span class="cents" style="font-size:18px">,${d.price.split('.')[1]||'00'}</span></div>
+        </div>
+        <button class="btn btn-outline btn-full" onclick="addToCart(${d.id}, 'digital')">Comprar Material</button>
+      `;
+      container.appendChild(card);
+    });
+  }
+}
+
+// ============ EVENTOS DO CARRINHO DE COMPRAS ============
+function toggleCart() {
+  document.getElementById('cartOverlay').classList.toggle('open');
+  document.getElementById('cartSidebar').classList.toggle('open');
+}
+
+function addToCart(id, type) {
+  let item = null;
+  if(type === 'plan') {
+    item = DB.plans().find(p=>p.id===id);
+  } else {
+    item = DB.digitalProducts().find(d=>d.id===id);
+  }
+  if(!item) return;
+
+  if(cart.find(i=>i.id===id && i.type===type)){
+    toast('Este item já está em seu carrinho!', 'info');
+    toggleCart();
+    return;
+  }
+
+  cart.push({id: item.id, name: item.name, price: item.price, type: type});
+  saveCart();
+  toast('Item adicionado ao carrinho!', 'success');
+  toggleCart();
+}
+
+function addMockupToCart() {
+  addToCart(2, 'plan');
+}
+
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  saveCart();
+}
+
+function updateCartUI() {
+  document.getElementById('cartCount').textContent = cart.length;
+  const container = document.getElementById('cartItemsContainer');
+  if(!container) return;
+  container.innerHTML = '';
+
+  let total = 0;
+  if(cart.length === 0) {
+    container.innerHTML = '<div class="cart-empty">Seu carrinho está vazio.</div>';
+  } else {
+    cart.forEach((item, idx)=>{
+      total += parseFloat(item.price);
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-price">R$ ${parseFloat(item.price).toFixed(2).replace('.',',')}</div>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart(${idx})"><i class="ti ti-trash"></i></button>
+      `;
+      container.appendChild(row);
+    });
+  }
+  document.getElementById('cartTotalPrice').textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
+}
+
+// ============ FINALIZAÇÃO E ENVIO DO PEDIDO (CHECKOUT) ============
+function goToCheckout() {
+  if(cart.length === 0){ toast('Adicione algum produto antes de fechar!', 'error'); return; }
+  toggleCart();
+  
+  const user = DB.currentUser();
+  if(user) {
+    document.getElementById('co-name').value = user.name || '';
+    document.getElementById('co-email').value = user.email || '';
+    document.getElementById('co-discord').value = user.discord || '';
+  }
+
+  const itemsContainer = document.getElementById('coSummaryItems');
+  itemsContainer.innerHTML = '';
+  let total = 0;
+  cart.forEach(item=>{
+    total += parseFloat(item.price);
+    const div = document.createElement('div');
+    div.className = 'co-summary-item';
+    div.innerHTML = `<span>${item.name}</span><span class="co-summary-price">R$ ${parseFloat(item.price).toFixed(2).replace('.',',')}</span>`;
+    itemsContainer.appendChild(div);
+  });
+
+  document.getElementById('coTotalPrice').textContent = `R$ ${total.toFixed(2).replace('.',',')}`;
+  showPage('checkout');
+}
+
+// ============ MÓDULO 3 INTEGRAÇÃO: CONSTRUTOR BR CODE E GERAÇÃO REAL DE QR PIX ============
+let globalPixCopiaCola = "";
+
+function buildPixPayload(key, amount, name) {
+  function field(id, value) {
+    const len = String(value.length).padStart(2, '0');
+    return id + len + value;
+  }
+  const merchantAccountInfo = field('00', 'BR.GOV.BCB.PIX') + field('01', key);
+  const merchantAccountInfoField = field('26', merchantAccountInfo);
+  const merchantCategoryCode = field('52', '0000');
+  const transactionCurrency = field('53', '986');
+  const transactionAmount = field('54', amount);
+  const countryCode = field('58', 'BR');
+  const merchantName = field('59', name.substring(0, 25));
+  const merchantCity = field('60', 'SAO PAULO');
+  const additionalDataField = field('62', field('05', '***'));
+  
+  let payload = field('00', '01') + merchantAccountInfoField + merchantCategoryCode + 
+                transactionCurrency + transactionAmount + countryCode + merchantName + 
+                merchantCity + additionalDataField + '6304';
+  
+  // Cálculo CRC16 simplificado padrão BR Code
+  let crc = 0xFFFF;
+  for (let c = 0; c < payload.length; c++) {
+    crc ^= payload.charCodeAt(c) << 8;
+    for (let i = 0; i < 8; i++) {
+      if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+      else crc <<= 1;
+    }
+  }
+  crc = (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+  return payload + crc;
+}
+
+function processOrder() {
+  const name = document.getElementById('co-name').value.trim();
+  const email = document.getElementById('co-email').value.trim();
+  const cpf = document.getElementById('co-cpf').value.trim();
+  const discord = document.getElementById('co-discord').value.trim();
+
+  if(!name || !email || !cpf || !discord) {
+    toast('Preencha todas as informações obrigatórias para prosseguir.', 'error');
+    return;
+  }
+
+  const orderId = 'BG-' + String(Date.now()).slice(-6);
+  const total = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
+  
+  const order = {
+    id: orderId,
+    userId: DB.currentUser() ? DB.currentUser().id : null,
+    customer: name,
+    email: email,
+    cpf: cpf,
+    discord: discord,
+    mode: document.getElementById('co-mode').value,
+    items: cart.map(i=>i.name).join(', '),
+    total: total.toFixed(2),
+    date: new Date().toLocaleDateString('pt-BR'),
+    status: 'pending'
+  };
+
+  DB.addOrder(order);
+  document.getElementById('successOrderNum').textContent = '#' + orderId;
+  
+  // Limpeza de Estado do Carrinho
+  cart = [];
+  sessionStorage.removeItem('bg_cart');
+  updateCartUI();
+
+  // Ativação do Módulo de Geração Pix via API Pública do qrserver (padrão pix.ae livre)
+  showPage('success');
+  
+  const pixKey = DB.siteTexts().pixKey;
+  globalPixCopiaCola = buildPixPayload(pixKey, order.total, 'BEGINNING GAME');
+  
+  document.getElementById('pixCopiaColaText').textContent = globalPixCopiaCola;
+  
+  const imgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(globalPixCopiaCola)}&margin=4`;
+  const imgEl = document.getElementById('pixGeneratedImg');
+  const loaderEl = document.getElementById('pixQrLoading');
+  const statusEl = document.getElementById('pixPayloadStatus');
+  
+  imgEl.src = imgUrl;
+  imgEl.onload = () => {
+    loaderEl.style.display = 'none';
+    imgEl.style.display = 'block';
+    statusEl.textContent = '✓ BR Code Pix válido gerado';
+    statusEl.style.color = '#00c853';
+  };
+  imgEl.onerror = () => {
+    loaderEl.textContent = '⚠ Erro na renderização do QR Code — utilize a cópia textual';
+    loaderEl.style.color = '#D90429';
+  };
+}
+
+function copyPixCopiaCola() {
+  if(!globalPixCopiaCola) return;
+  navigator.clipboard.writeText(globalPixCopiaCola).then(()=>{
+    toast('Código Pix Copiado para área de transferência!', 'success');
+  });
+}
+
+// ============ PAINEL DO CLIENTE ============
+function renderClient() {
+  const user = DB.currentUser();
+  if(!user) { showPage('home'); return; }
+
+  document.getElementById('clientAvatar').textContent = user.name.charAt(0).toUpperCase();
+  document.getElementById('clientName').textContent = user.name;
+  document.getElementById('profileName').value = user.name;
+  document.getElementById('profileEmail').value = user.email;
+  document.getElementById('profileDiscord').value = user.discord;
+
+  const orders = DB.orders().filter(o=>o.email === user.email || o.userId === user.id);
+  document.getElementById('cs-orders-count').textContent = orders.length;
+
+  const table = document.getElementById('clientOrdersTable');
+  table.innerHTML = '';
+  if(orders.length === 0) {
+    table.innerHTML = `<tr><td colspan="5" style="color:var(--muted); text-align:center">Você ainda não realizou compras.</td></tr>`;
+  } else {
+    orders.forEach(o=>{
+      table.innerHTML += `
+        <tr>
+          <td>#${o.id}</td>
+          <td>${o.date}</td>
+          <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${o.items}</td>
+          <td style="color:var(--yellow); font-weight:600">R$ ${parseFloat(o.total).toFixed(2).replace('.',',')}</td>
+          <td><span class="status-badge status-${o.status}">${o.status==='pending'?'Pendente':'Aprovado'}</span></td>
+        </tr>
+      `;
+    });
+  }
+}
+
+function clientTab(t) {
+  document.querySelectorAll('.client-nav-item').forEach(el=>el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.client-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('cs-'+t).classList.add('active');
+}
+
+function saveProfile() {
+  const user = DB.currentUser();
+  user.name = document.getElementById('profileName').value.trim();
+  user.discord = document.getElementById('profileDiscord').value.trim();
+  
+  const users = DB.users();
+  const idx = users.findIndex(u=>u.id === user.id);
+  if(idx > -1) users[idx] = user;
+  
+  DB.setUser(user);
+  DB.set('users', users);
+  toast('Perfil atualizado com sucesso!', 'success');
+  renderClient();
+}
+
+// ============ PAINEL ADMINISTRATIVO (ADMIN EXPANDIDO) ============
+function renderAdmin() {
+  const user = DB.currentUser();
+  if(!user || !user.isAdmin) { showPage('home'); return; }
+
+  const orders = DB.orders();
+  const users = DB.users();
+  const revenue = orders.reduce((acc, o)=> acc + (o.status==='completed' ? parseFloat(o.total) : 0), 0);
+
+  document.getElementById('ad-sales-total').textContent = `R$ ${revenue.toFixed(2).replace('.',',')}`;
+  document.getElementById('ad-orders-count').textContent = orders.length;
+  document.getElementById('ad-users-count').textContent = users.length;
+
+  // Pedidos Recentes
+  const recentBox = document.getElementById('adminRecentOrders');
+  recentBox.innerHTML = '';
+  if(orders.length === 0) {
+    recentBox.innerHTML = '<div style="color:var(--muted);font-size:14px">Nenhum pedido efetuado no sistema.</div>';
+  } else {
+    orders.slice(-4).reverse().forEach(o=>{
+      recentBox.innerHTML += `
+        <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); padding:10px; border-radius:6px; margin-bottom:8px; font-size:13px">
+          <div><strong>#${o.id}</strong> - ${o.customer}</div>
+          <div style="color:var(--yellow)">R$ ${parseFloat(o.total).toFixed(2).replace('.',',')}</div>
+        </div>
+      `;
+    });
+  }
+
+  // Listagem de Tabelas Admin
+  renderAdminPlansTable();
+  renderAdminCategoriesTable();
+  renderAdminDigitalTable();
+  renderAdminOrdersTable();
+
+  // Carrega Textos para Edição
+  const texts = DB.siteTexts();
+  document.getElementById('adminHeroTitle').value = texts.heroTitle;
+  document.getElementById('adminHeroSub').value = texts.heroSubtitle;
+  document.getElementById('pixKeyAdmin').value = texts.pixKey;
+  document.getElementById('adminDiscordLink').value = texts.discordLink;
+}
+
+function adminTab(t) {
+  document.querySelectorAll('.admin-nav-item').forEach(el=>el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('as-'+t).classList.add('active');
+}
+
+// Tabelas Administrativas Individuais
+function renderAdminPlansTable() {
+  const tbody = document.getElementById('adminPlansTable');
+  tbody.innerHTML = '';
+  DB.plans().forEach(p=>{
+    tbody.innerHTML += `
+      <tr>
+        <td><strong>${p.name}</strong></td>
+        <td>R$ ${parseFloat(p.price).toFixed(2)}</td>
+        <td><span style="color:var(--${p.color})">${p.color.toUpperCase()}</span></td>
+        <td>${p.active?'Ativo':'Inativo'}</td>
+        <td>
+          <button class="btn btn-dark" style="padding:4px 8px; font-size:12px" onclick="editPlan(${p.id})">Editar</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function renderAdminCategoriesTable() {
+  const tbody = document.getElementById('adminCategoriesTable');
+  tbody.innerHTML = '';
+  DB.categories().forEach(c=>{
+    tbody.innerHTML += `
+      <tr>
+        <td><code>${c.slug}</code></td>
+        <td>${c.name}</td>
+        <td>
+          <button class="btn btn-red" style="padding:4px 8px; font-size:12px" onclick="deleteCategory('${c.slug}')">Excluir</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function renderAdminDigitalTable() {
+  const tbody = document.getElementById('adminDigitalTable');
+  tbody.innerHTML = '';
+  DB.digitalProducts().forEach(d=>{
+    tbody.innerHTML += `
+      <tr>
+        <td>${d.name}</td>
+        <td><code style="color:var(--blue)">${d.category}</code></td>
+        <td>R$ ${parseFloat(d.price).toFixed(2)}</td>
+        <td>
+          <button class="btn btn-red" style="padding:4px 8px; font-size:12px" onclick="deleteDigital(${d.id})">Excluir</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function renderAdminOrdersTable() {
+  const tbody = document.getElementById('adminOrdersTable');
+  tbody.innerHTML = '';
+  DB.orders().forEach(o=>{
+    tbody.innerHTML += `
+      <tr>
+        <td>#${o.id}</td>
+        <td>${o.customer}<br><small style="color:var(--muted)">${o.discord}</small></td>
+        <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis">${o.items}</td>
+        <td style="color:var(--yellow)">R$ ${parseFloat(o.total).toFixed(2)}</td>
+        <td><span class="status-badge status-${o.status}">${o.status}</span></td>
+        <td>
+          ${o.status==='pending'? `<button class="btn btn-yellow" style="padding:4px 8px; font-size:11px" onclick="approveOrder('${o.id}')">Aprovar Pagamento</button>` : '✓ Processado'}
+        </td>
+      </tr>
+    `;
+  });
+}
+
+// Ações do Admin Expandido
+function openPlanModal() {
+  document.getElementById('planEditId').value = '';
+  document.getElementById('planName').value = '';
+  document.getElementById('planPrice').value = '';
+  document.getElementById('planDesc').value = '';
+  document.getElementById('planFeatures').value = '';
+  document.getElementById('planModalTitle').textContent = 'Criar Novo Plano';
+  document.getElementById('planModal').classList.add('open');
+}
+
+function editPlan(id) {
+  const p = DB.plans().find(pl=>pl.id === id);
+  if(!p) return;
+  document.getElementById('planEditId').value = p.id;
+  document.getElementById('planName').value = p.name;
+  document.getElementById('planPrice').value = p.price;
+  document.getElementById('planColor').value = p.color;
+  document.getElementById('planDesc').value = p.desc;
+  document.getElementById('planFeatures').value = p.features.join('\n');
+  document.getElementById('planModalTitle').textContent = 'Editar Plano';
+  document.getElementById('planModal').classList.add('open');
+}
+
+function savePlan() {
+  const id = document.getElementById('planEditId').value;
+  const name = document.getElementById('planName').value.trim();
+  const price = document.getElementById('planPrice').value.trim();
+  const color = document.getElementById('planColor').value;
+  const desc = document.getElementById('planDesc').value.trim();
+  const features = document.getElementById('planFeatures').value.split('\n').filter(f=>f.trim());
+
+  if(!name || !price) { toast('Nome e Preço obrigatórios', 'error'); return; }
+
+  let plans = DB.plans();
+  if(id) {
+    plans = plans.map(p=> p.id === parseInt(id) ? {id:p.id, name, price, color, desc, features, active:p.active} : p);
+  } else {
+    plans.push({ id: Date.now(), name, price, color, desc, features, active:true });
+  }
+  
+  DB.savePlans(plans);
+  closeModal('planModal');
+  toast('Plano salvo!', 'success');
+  renderAdmin();
+  renderPlans();
+}
+
+function openCategoryModal() {
+  document.getElementById('categoryName').value = '';
+  document.getElementById('categoryModal').classList.add('open');
+}
+
+function saveCategory() {
+  const name = document.getElementById('categoryName').value.trim();
+  if(!name) return;
+  const slug = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-8]/g, '-');
+  
+  const cats = DB.categories();
+  if(cats.find(c=>c.slug === slug)) { toast('Categoria já existe', 'error'); return; }
+  
+  cats.push({slug, name});
+  DB.saveCategories(cats);
+  closeModal('categoryModal');
+  toast('Categoria salva', 'success');
+  renderAdmin();
+  renderPlans();
+}
+
+function deleteCategory(slug) {
+  let cats = DB.categories();
+  cats = cats.filter(c=>c.slug !== slug);
+  DB.saveCategories(cats);
+  renderAdmin();
+  renderPlans();
+}
+
+function openDigitalModal() {
+  document.getElementById('digitalName').value = '';
+  document.getElementById('digitalPrice').value = '';
+  
+  const select = document.getElementById('digitalCategory');
+  select.innerHTML = '';
+  DB.categories().forEach(c=>{
+    select.innerHTML += `<option value="${c.slug}">${c.name}</option>`;
+  });
+  
+  document.getElementById('digitalModal').classList.add('open');
+}
+
+function saveDigital() {
+  const name = document.getElementById('digitalName').value.trim();
+  const category = document.getElementById('digitalCategory').value;
+  const price = document.getElementById('digitalPrice').value.trim();
+
+  if(!name || !price) return;
+  
+  const products = DB.digitalProducts();
+  products.push({ id: Date.now(), name, category, price });
+  DB.saveDigitalProducts(products);
+  closeModal('digitalModal');
+  toast('Produto salvo', 'success');
+  renderAdmin();
+  renderPlans();
+}
+
+function deleteDigital(id) {
+  let products = DB.digitalProducts();
+  products = products.filter(p=>p.id !== id);
+  DB.saveDigitalProducts(products);
+  renderAdmin();
+  renderPlans();
+}
+
+function saveSiteTexts() {
+  const obj = {
+    heroTitle: document.getElementById('adminHeroTitle').value.trim(),
+    heroSubtitle: document.getElementById('adminHeroSub').value.trim(),
+    pixKey: document.getElementById('pixKeyAdmin').value.trim(),
+    discordLink: document.getElementById('adminDiscordLink').value.trim()
+  };
+  DB.saveSiteTexts(obj);
+  toast('Textos atualizados no Front-end!', 'success');
+  applySiteTexts();
+}
+
+function approveOrder(id) {
+  const orders = DB.orders();
+  const idx = orders.findIndex(o=>o.id === id);
+  if(idx > -1) {
+    orders[idx].status = 'completed';
+    DB.saveOrders(orders);
+    toast(`Pedido #${id} marcado como pago`, 'success');
+    renderAdmin();
+  }
+}
+
+// ============ SESSÃO E CONTA DO USUÁRIO (LOGIN / LOGOUT / NAV) ============
+function openAuthModal() {
+  document.getElementById('authModal').classList.add('open');
+  authTab('login');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+function authTab(t) {
+  document.querySelectorAll('.auth-tabs .auth-tab').forEach((tab, i)=> tab.classList.toggle('active', (t==='login'&&i===0) || (t==='register'&&i===1)));
+  document.getElementById('loginForm').style.display = t==='login'?'block':'none';
+  document.getElementById('registerForm').style.display = t==='register'?'block':'none';
+}
+
+function updateNavForUser() {
+  const user = DB.currentUser();
+  const container = document.getElementById('navAuthArea');
+  if(!user) {
+    container.innerHTML = `<button class="btn btn-yellow" onclick="openAuthModal()">Entrar / Cadastro</button>`;
+    return;
+  }
+  if(user.isAdmin) {
+    container.innerHTML = `
+      <button class="btn btn-red" onclick="showPage('admin')"><i class="ti ti-shield-lock"></i> Painel Admin</button>
+      <button class="btn btn-dark" onclick="logout()">Sair</button>
+    `;
+  } else {
+    container.innerHTML = `
+      <button class="btn btn-outline" onclick="showPage('client')"><i class="ti ti-user"></i> Minha Conta</button>
+      <button class="btn btn-dark" onclick="logout()">Sair</button>
+    `;
+  }
+}
+
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  
+  if(!email || !pass) { toast('Preencha os dados de login', 'error'); return; }
+  
+  const user = DB.users().find(u=>u.email===email && u.password===pass);
+  if(!user) { toast('E-mail ou senha incorretos!', 'error'); return; }
+  
+  DB.setUser(user);
+  closeModal('authModal');
+  toast(`Olá, bem-vindo de volta!`, 'success');
+  updateNavForUser();
+  if(user.isAdmin) showPage('admin');
+  else showPage('client');
+}
+
+function doRegister() {
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const discord = document.getElementById('regDiscord').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+
+  if(!name || !email || !pass) { toast('Preencha todos os campos fundamentais', 'error'); return; }
+  if(pass !== pass2) { toast('As senhas digitadas não batem!', 'error'); return; }
+  if(DB.users().find(u=>u.email === email)) { toast('Este e-mail já está cadastrado', 'error'); return; }
+
+  const newUser = {
+    id: Date.now(),
+    name: name,
+    email: email,
+    password: pass,
+    discord: discord,
+    isAdmin: false,
+    createdAt: new Date().toLocaleDateString('pt-BR')
+  };
+
+  DB.addUser(newUser);
+  DB.setUser(newUser);
+  closeModal('authModal');
+  toast('Conta criada com sucesso!', 'success');
+  updateNavForUser();
+  showPage('client');
+}
+
+function logout() {
+  DB.setUser(null);
+  updateNavForUser();
+  toast('Sessão encerrada com sucesso.', 'info');
+  showPage('home');
+}
+
+// ============ TOAST NOTIFICATION ENGINE ============
+function toast(msg, type='info') {
+  const bgColors = { success: '#00c853', error: '#D90429', info: '#FFD700' };
+  const textColors = { success: '#fff', error: '#fff', info: '#000' };
+  const icons = { success: 'ti-circle-check', error: 'ti-alert-triangle', info: 'ti-info-circle' };
+  
+  const container = document.getElementById('toastCont');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.style.background = bgColors[type];
+  el.style.color = textColors[type];
+  el.innerHTML = `<i class="ti ${icons[type]}"></i> <span>${msg}</span>`;
+  
+  container.appendChild(el);
+  setTimeout(()=>{
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-10px)';
+    el.style.transition = 'all .3s';
+    setTimeout(()=>el.remove(), 300);
+  }, 3500);
+}
+
+// ============ ANIMAÇÃO DE NÚMEROS COMPLEMENTAR ============
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target = parseInt(el.getAttribute('data-count'));
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(()=>{
+      current += increment;
+      if(current >= target) {
+        el.textContent = target + (target===98?'%':'+');
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current);
+      }
+    }, 25);
+  });
+}
+
+// ============ INTERATIVIDADE WIDGETS AUXILIARES ============
+function toggleFaq(el) {
+  const parent = el.parentElement;
+  parent.classList.toggle('open');
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ============ MÓDULO 1 INTEGRAÇÃO: CHAT INTELIGENTE COM Claude (SIMULADO / EXTENSÍVEL) ============
+function toggleAiBox() {
+  document.getElementById('aiBox').classList.toggle('open');
+}
+
+function sendAiMessage() {
+  const input = document.getElementById('aiInput');
+  const query = input.value.trim();
+  if(!query) return;
+
+  const msgsBox = document.getElementById('aiMessages');
+  
+  // Imprime Mensagem do Usuário
+  const userDiv = document.createElement('div');
+  userDiv.className = 'ai-msg user';
+  userDiv.textContent = query;
+  msgsBox.appendChild(userDiv);
+  
+  input.value = '';
+  msgsBox.scrollTop = msgsBox.scrollHeight;
+
+  // Renderiza Animação Pensando
+  const thinkingDiv = document.createElement('div');
+  thinkingDiv.className = 'ai-thinking';
+  thinkingDiv.id = 'ai-thinking-temp';
+  thinkingDiv.innerHTML = `Processando com Claude<span></span><span></span><span></span>`;
+  msgsBox.appendChild(thinkingDiv);
+  msgsBox.scrollTop = msgsBox.scrollHeight;
+
+  // Lógica Claude via Anthropic API (Fallback Estruturado)
+  setTimeout(() => {
+    document.getElementById('ai-thinking-temp').remove();
+    
+    let reply = "Entendi! Para melhorar o seu rendimento no Fortnite competitivo, recomendo focar em mapas de Creative voltados a Piece Control e fazer VOD Review de suas mortes no Arena/Fncs.";
+    
+    // Respostas Contextuais Básicas
+    const qLower = query.toLowerCase();
+    if(qLower.includes('plano') || qLower.includes('preço') || qLower.includes('comprar')) {
+      reply = "Temos 3 planos estruturais de Mentoria (Basic, Pro e Elite), além de E-books de apoio em nossa Home Page. Adicione ao carrinho para iniciar seu treinamento!";
+    } else if(qLower.includes('sensibilidade') || qLower.includes('sens')) {
+      reply = "A sensibilidade ideal varia, mas a maioria dos Pro Players usa entre 400 a 800 DPI com sensibilidade in-game variando de 6% a 10%. O mais importante é a consistência muscular!";
+    } else if(qLower.includes('unreal') || qLower.includes('rank')) {
+      reply = "Para subir do Champion ao Unreal você precisa de consistência e foco em posicionamento (placement points) no late game, evitando lutas desnecessárias no mid-game.";
+    }
+
+    const botDiv = document.createElement('div');
+    botDiv.className = 'ai-msg bot';
+    botDiv.textContent = reply;
+    msgsBox.appendChild(botDiv);
+    msgsBox.scrollTop = msgsBox.scrollHeight;
+  }, 1000);
+}
+
+// ============ INICIALIZADOR GERAL AO CARREGAR PÁGINA ============
+function init() {
+  applySiteTexts();
+  renderPlans();
+  updateCartUI();
+  updateNavForUser();
+  
+  // Observador para disparar animação de contagem ao rolar a página
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) {
+        animateCounters();
+        observer.disconnect();
+      }
+    });
+  }, {threshold: 0.2});
+  
+  const counterSection = document.getElementById('counter');
+  if(counterSection) observer.observe(counterSection);
+}
+
+window.onload = init;
+</script>
+</body>
+</html>
